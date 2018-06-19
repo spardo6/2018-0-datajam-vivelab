@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  background-color: #0069A0;
+  padding: 1rem;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+
+footer {
+  background-color: #222;
+  color: #bbb;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: .9rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  border-left: thin solid #ccc;
+  border-right: thin solid #ccc;
+  padding: 1rem;
+}
+
+h1 {
+  padding-bottom: .5em;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th,
+table td {
+  border: thin solid #ccc;
+  padding: .5em .75em;
+  text-align: left;
+}
