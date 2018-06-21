@@ -1,15 +1,31 @@
-const data = [
-  { "name": "Vivelab Bogotá", "latitude": 4.6380851, "longitude": -74.0915043 },
-  { "name": "Universidad Nacional", "latitude": 4.6363211, "longitude": -74.0813062 },
-  { "name": "Embajada de los Estados Unidos", "latitude": 4.6366941, "longitude": -74.0948787 }
-];
-
 class Main {
-  constructor(data) {
-    this.data = data;
+  constructor() {
+    this.cols = [ 'route', 'line', 'route_sae', 'position', 'node', 'edging', 'latitude', 'longitude' ];
     this.center = { lat: 4.5981, lng: -74.0758 };
-    this.createMap();
-    this.table();
+    this.getData().then((data) => {
+      this.data = data;
+      this.createMap();
+      this.table();
+    }).catch(() => {
+      alert('Error al cargar los datos.');
+    });
+  }
+
+  getData() {
+    return new Promise((resolve, reject) => {
+      let http = new XMLHttpRequest();
+      http.onreadystatechange = () => {
+        if (http.readyState === 4) {
+          if (http.status === 200) {
+            resolve(JSON.parse(http.responseText));
+          } else {
+            reject();
+          }
+        }
+      };
+      http.open('GET', 'data.json');
+      http.send();
+    });
   }
 
   createMap() {
@@ -25,9 +41,9 @@ class Main {
   row(data) {
     this.marker(data.latitude, data.longitude);
     let row = document.createElement('tr');
-    row.appendChild(this.col(data.name));
-    row.appendChild(this.col(data.latitude));
-    row.appendChild(this.col(data.longitude));
+    this.cols.forEach((i) => {
+      row.appendChild(this.col(data[i]));
+    });
     return row;
   }
 
@@ -43,5 +59,5 @@ class Main {
 }
 
 function initMap() {
-  new Main(data);
+  new Main();
 }

@@ -33,10 +33,6 @@ footer {
   padding: 1rem;
 }
 
-h1 {
-  padding-bottom: .5em;
-}
-
 table {
   border-collapse: collapse;
   width: 100%;
@@ -52,4 +48,5 @@ table td {
 #map {
   height: 500px;
   width: 100%;
+  margin-bottom: 1rem;
 }
