@@ -31,6 +31,18 @@
   <footer>Bogotá Colombia <strong>2018</strong></footer>
 
   <script src="main.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp7tUjyMBnmXO5JS38KdFw24WHl68JqXs&callback=initMap"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyBGqQYVxtWuk3_pT4GHzs4qMt2u_vSbuOM",
+      authDomain: "gmaps-test-1529532165250.firebaseapp.com",
+      databaseURL: "https://gmaps-test-1529532165250.firebaseio.com",
+      projectId: "gmaps-test-1529532165250",
+      storageBucket: "gmaps-test-1529532165250.appspot.com",
+      messagingSenderId: "576042499459"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp7tUjyMBnmXO5JS38KdFw24WHl68JqXs&callback=initialize"></script>
 </body>
 </html>

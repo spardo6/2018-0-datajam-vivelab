@@ -1,50 +1,48 @@
 class Main {
   constructor() {
-    this.cols = [ 'route', 'line', 'route_sae', 'position', 'node', 'edging', 'latitude', 'longitude' ];
+    this.db = firebase.database().ref();
     this.data().then((data) => {
-      this.locations = data;
-      this.createMap();
-      this.table();
+      this.data = data;
+      this.map('map');
+      this.table('#dataset');
       this.bounds();
     }).catch(() => {
       alert('Error al cargar los datos.');
     });
+    // this.cols = [ 'route', 'line', 'route_sae', 'position', 'node', 'edging', 'latitude', 'longitude' ];
+    this.cols = [ 'Ruta Comercial', 'Linea', 'Ruta SAE', 'Posicion', 'Nodo', 'Cenefa Paradero', 'Lat', 'Lon' ];
   }
 
   data() {
     return new Promise((resolve, reject) => {
-      let http = new XMLHttpRequest();
-      http.onreadystatechange = () => {
-        if (http.readyState === 4) {
-          if (http.status === 200) {
-            resolve(JSON.parse(http.responseText));
-          } else {
-            reject();
-          }
-        }
-      };
-      http.open('GET', 'data.json');
-      http.send();
+      this.db.once('value', snapshot => {
+        resolve(snapshot.val());
+      }, () => {
+        reject();
+      });
     });
   }
 
+  map(selector) {
+    this.map = new google.maps.Map(document.getElementById(selector));
+  }
+
+  marker(lat, lng, title) {
+    new google.maps.Marker({ position: { lat, lng }, map: this.map, title });
+  }
+
   latLng(latitude, longitude) {
-    return { lat: latitude, lng: longitude };
+    return { lat: Number(latitude), lng: Number(longitude) };
   }
 
-
-  createMap() {
-    this.map = new google.maps.Map(document.getElementById('map'));
-  }
-
-  table() {
-    this.locations.forEach((i) => {
-      document.querySelector('#dataset tbody').appendChild(this.row(i));
+  table(selector) {
+    this.data.forEach((i) => {
+      document.querySelector(`${selector} tbody`).appendChild(this.row(i));
     });
   }
 
   row(data) {
-    this.marker(data.latitude, data.longitude, data.edging);
+    this.marker(Number(data.Lat), Number(data.Lon), data['Cenefa Paradero']);
     let row = document.createElement('tr');
     this.cols.forEach((i) => {
       row.appendChild(this.col(data[i]));
@@ -58,16 +56,12 @@ class Main {
     return col;
   };
 
-  marker(lat, lng, title) {
-    new google.maps.Marker({ position: { lat, lng }, map: this.map, title });
-  }
-
   bounds() {
     let x1, x2, y1, y2;
 
-    this.locations.forEach((location) => {
-      let lat = location.latitude;
-      let lng = location.longitude;
+    this.data.forEach((location) => {
+      let lat = location.Lat;
+      let lng = location.Lon;
 
       if (!x1 || lat > x1) { x1 = lat }
       if (!x2 || lat < x2) { x2 = lat }
@@ -82,6 +76,6 @@ class Main {
   }
 }
 
-function initMap() {
+function initialize() {
   new Main();
 }
