@@ -14,21 +14,25 @@ Mediante el uso de **Datos Abiertos** mostrar marcadores en el mapa de Google us
 
 https://editorconfig.org/
 
-### Csv a JSON
+### CSV a JSON
 
-- Descargar csv de la plataforma y verificar cuál es el separador.
-- En https://csv.keyangxiang.com/ subir el csv descargado.
+- Descargar **CSV** de la plataforma [Datos Abiertos Bogotá](http://datosabiertos.bogota.gov.co/).
+- Identificar el separador de los campos.
+- En https://csv.keyangxiang.com/ subir el CSV descargado.
 
 ![Imagen subida de archivos](./assets/upcsv.jpg)
 
-- En el boton de "Parser Options" seleccionar el separador (Auto par archivos separados por coma), es importante dejar habilitada la opción *Ignore empty* para evitar generar registros vacíos.
+- En el boton de `Parser Options` ubicado en la esquina superior izquierda, seleccionar el separador (Delimitador por defecto es ",").
+- Habilitar la opción *Ignore empty* para evitar generar registros vacíos.
 
 [Imagen seleccion de separador](./assets/options.jpg)
 
-- Al final de la página seleccionar **Download JSON** para descargar el archivo, ó seleccionar **Review JSON** para previsualizar el archivo.
+- Al final de la página seleccionar **Download JSON** para descargar el archivo o seleccionar **Review JSON** para previsualizar el archivo.
 
 ![Imagen seleccion de separador](./assets/review.jpg)
 ![Imagen seleccion de separador](./assets/JSONResult.jpg)
+
+> **Nota:** Importar el archivo `result.json` en **Firebase Database**.
 
 ---
 
