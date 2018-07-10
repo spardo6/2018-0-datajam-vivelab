@@ -9,8 +9,7 @@ class Main {
     }).catch(() => {
       alert('Error al cargar los datos.');
     });
-    // this.cols = [ 'route', 'line', 'route_sae', 'position', 'node', 'edging', 'latitude', 'longitude' ];
-    this.cols = [ 'Ruta Comercial', 'Linea', 'Ruta SAE', 'Posicion', 'Nodo', 'Cenefa Paradero', 'Lat', 'Lon' ];
+    this.cols = [ 'route', 'line', 'sae', 'position', 'node', 'edging', 'latitude', 'longitude' ];
   }
 
   data() {
@@ -20,6 +19,12 @@ class Main {
       }, () => {
         reject();
       });
+
+      // this.db.orderByChild('route').equalTo('17_7').once('value', snapshot => {
+      //   resolve(snapshot.val());
+      // }, () => {
+      //   reject();
+      // });
     });
   }
 
@@ -42,7 +47,7 @@ class Main {
   }
 
   row(data) {
-    this.marker(Number(data.Lat), Number(data.Lon), data['Cenefa Paradero']);
+    this.marker(Number(data.latitude), Number(data.longitude), data.edging);
     let row = document.createElement('tr');
     this.cols.forEach((i) => {
       row.appendChild(this.col(data[i]));
@@ -60,8 +65,8 @@ class Main {
     let x1, x2, y1, y2;
 
     this.data.forEach((location) => {
-      let lat = location.Lat;
-      let lng = location.Lon;
+      let lat = location.latitude;
+      let lng = location.longitude;
 
       if (!x1 || lat > x1) { x1 = lat }
       if (!x2 || lat < x2) { x2 = lat }
