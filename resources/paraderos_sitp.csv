@@ -1,4 +1,4 @@
-Ruta Comercial,Linea,Ruta SAE,Posicion,Nodo,PosX,PosY,Cenefa Paradero,Lat,Lon
+route,line,sae,position,node,position_x,position_y,edging,latitude,longitude
 17_7,76,157,0,29352,600313.7674,513171.4289,391A05,4.64214131,-74.0955957
 17_7,76,157,614,19810,600114.7723,513659.0555,390A05,4.64655447,-74.097384
 17_7,76,157,1174,19811,600380.4171,514008.3131,108A05,4.64971064,-74.0949852
