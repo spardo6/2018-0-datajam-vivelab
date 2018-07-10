@@ -14,7 +14,6 @@ Mediante el uso de **Datos Abiertos** mostrar marcadores en el mapa de Google us
 
 https://editorconfig.org/
 
-<<<<<<< HEAD
 ### Csv a JSON
 
 - Descargar csv de la plataforma y verificar cuál es el separador.
@@ -25,10 +24,8 @@ https://editorconfig.org/
 - Al final de la página seleccionar **Download JSON** para descargar el archivo, ó seleccionar **Review JSON** para previsualizar el archivo.
 ![Imagen seleccion de separador](/assets/review.jpg)
 ![Imagen seleccion de separador](/assets/JSONResult.jpg) 
-=======
 ---
 
 # Otros recursos
 
 - [Cómo agregar Firebase a tu proyecto de JavaScript](https://firebase.google.com/docs/web/setup?authuser=0)
->>>>>>> 3b409b41e29ff82b69c40c742af5b67daadc17b8
