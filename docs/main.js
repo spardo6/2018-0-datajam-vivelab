@@ -1,6 +1,5 @@
 class Main {
   constructor() {
-    this.db = firebase.database().ref();
     this.data().then((data) => {
       this.data = data;
       this.map('map');
@@ -14,7 +13,7 @@ class Main {
 
   data() {
     return new Promise((resolve, reject) => {
-      this.db.once('value', snapshot => {
+      firebase.database().ref().once('value', snapshot => {
         resolve(snapshot.val());
       }, () => {
         reject();
